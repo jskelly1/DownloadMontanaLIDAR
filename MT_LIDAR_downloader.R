@@ -133,7 +133,7 @@ for (i in seq_along(dem_files)) {
   r_i <- rast(dem_files[i])
   if (!identical(crs(r_i), crs(ref_rast))) {
     message("CRS differs, reprojecting...")
-    r_i <- project(r_i, crs)
+    r_i <- project(r_i, crs(ref_rast))
   }
   r_i <- resample(r_i,bbox_rast)
   writeRaster(r_i, paste0(dem_files[i]), overwrite = TRUE)
@@ -153,7 +153,7 @@ for (i in seq_along(dsm_files)) {
   r_i <- rast(dsm_files[i])
   if (!identical(crs(r_i), crs(ref_rast))) {
     message("CRS differs, reprojecting...")
-    r_i <- project(r_i, crs)
+    r_i <- project(r_i, crs(ref_rast))
   }
   r_i <- resample(r_i,bbox_rast)
   writeRaster(r_i, paste0(dsm_files[i]), overwrite = TRUE)
