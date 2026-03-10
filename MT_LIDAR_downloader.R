@@ -113,7 +113,7 @@ for (i in seq_along(chm_files)) {
   r_i <- rast(chm_files[i])
   if (!identical(crs(r_i), crs(ref_rast))) {
     message("CRS differs, reprojecting...")
-    r_i <- project(r_i, crs)
+    r_i <- project(r_i, crs(ref_rast))
   }
   r_i <- resample(r_i,bbox_rast)
   writeRaster(r_i, paste0(chm_files[i]), overwrite = TRUE)
